@@ -31,4 +31,25 @@ The project can make use of 2 different types of database:
 A simple memory stored database for test purposes. It resets ervery time you run the application
 
 ### Mysql
-Using the container configured in the Dockerfile, its possible to run a MySQL database
+Using the container configured in the Dockerfile, its possible to run a MySQL database.
+To run the database container, just build the docker image from the Dockerfile in the database folder with the command:
+
+```
+docker build -t go-sandbox-db .
+```
+
+And run the container with the command:
+
+```
+docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=[RootPassword] -e MYSQL_DATABASE=GoSandBox -e MYSQL_USER=[User] -e MYSQL_PASSWORD=[Password] go-sandbox-db
+```
+The username and password for the database should be configured in webserver.env file.
+
+## Running the webserver
+To run the server, just execute the command
+
+```
+go run webserver.go
+```
+
+in the src folder of the project.
